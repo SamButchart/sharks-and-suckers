@@ -959,9 +959,9 @@ const SSGridDisplay = {
       let offLeft = this.mainCanvas.offsetLeft;
       let offTop = this.mainCanvas.offsetTop;
       
-      
-      let xPos = event.clientX - offLeft; //  pageX; // clientX
-		let yPos = event.clientY - offTop; //pageY // clientY
+      // Use pageX and pageY so co-ordinates are correct when page is scrolled
+      let xPos = event.pageX - offLeft; //  pageX; // clientX
+		let yPos = event.pageY - offTop; //pageY // clientY
 		
       //console.log("XPos = " + xPos + " yPos = " + yPos);
 		
