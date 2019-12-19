@@ -1,0 +1,68 @@
+<html>
+<head>
+<!--<script type="text/javascript" src="https://sites.google.com/site/sambutchartdr/home/programming-projects/simpson-s-paradox/sharksandsuckers.js
+"></script>
+-->
+
+
+<script type="text/javascript" src=".//sharksandsuckers.js"></script>
+
+</head>
+
+<body>
+<div id="container">
+    <canvas id="myCanvas" height="600" width="700"></canvas>
+</div>
+<div>
+<button type="button" id="step_button_id" onclick="grid.step();">Step</button>
+<button type="button" id="iterate_button_id" onclick = "disableButtons(); grid.iterate();">Start</button>
+<button type="button" id="stop_button_id" onClick = "grid.stop_iterate(); enableButtons();" >Stop</button>
+<button type="button" id="clear_button_id" onclick = "grid.clear();">Clear</button>
+<button type="button" id="random_button_id" onclick="grid.randomize();">Random</button>
+
+<input type="range" min="0" max="100" value="50" class="slider" id="speedControl">
+<label for="speedControl">Speed</label>
+<br>
+<input type="range" min="0" max="100" value="50" class="slider" id="suckerRatio">
+<label for="suckerRatio">Initial lemmings</label>
+
+<p><div id = "dataLabel"></div></p>
+</div>
+</body>
+
+<script>
+const grid = SHARKS_AND_SUCKERS.createRLGrid(50,50, "#myCanvas", true, "#dataLabel");
+grid.addMouseListener(function(event) {grid.mouseClickEvent(event);} );
+grid.addDelaySlideListener("speedControl", function() {let delay = 100 - this.value; grid.setDelay(delay); }) ;       
+grid.addSuckerRatioSlideListener("suckerRatio", function() {let ratio = this.value/100; grid.setSuckerRatio(ratio); });
+
+grid.setDelay(50);
+
+grid.paint();
+
+// Put all this code into Grid object?
+const step_button = document.getElementById("step_button_id");
+const iterate_button = document.getElementById("iterate_button_id");
+const stop_button = document.getElementById("stop_button_id");
+const clear_button = document.getElementById("clear_button_id");
+const random_button = document.getElementById("random_button_id");
+
+const disableButtons = function() {
+step_button.disabled=true;
+iterate_button.disabled=true;
+clear_button.disabled=true;
+random_button.disabled=true;
+};
+
+const enableButtons = function() {
+step_button.disabled=false;
+iterate_button.disabled=false;
+clear_button.disabled=false;
+random_button.disabled=false;
+};
+
+</script>
+
+
+
+</html>
